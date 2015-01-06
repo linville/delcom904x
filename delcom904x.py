@@ -4,7 +4,7 @@
 #
 # Requires the Signal 11 HIDAPI and cython-hidapi.
 #
-# Copyright (c) 2014 Aaron Linville <aaron@linville.org>
+# Copyright (c) 2015 Aaron Linville <aaron@linville.org>
 #
 
 import hid
@@ -112,19 +112,19 @@ class DelcomMultiColorIndicator:
             off_time = bin(colors).count('1') * cycle_time - cycle_time
             
             if colors & green:
-                print "Cycle green", cycle_time, delay, off_time
+                #print "Cycle green", cycle_time, delay, off_time
                 self.__set_duty_cycle(0, cycle_time, off_time)
                 self.__set_phase_delay(0, delay)
                 delay += cycle_time
             
             if colors & red:
-                print "Cycle red", cycle_time, delay, off_time
+                #print "Cycle red", cycle_time, delay, off_time
                 self.__set_duty_cycle(1, cycle_time, off_time)
                 self.__set_phase_delay(1, delay)
                 delay += cycle_time
             
             if colors & blue:
-                print "Cycle blue", cycle_time, delay, off_time
+                #print "Cycle blue", cycle_time, delay, off_time
                 self.__set_duty_cycle(2, cycle_time, off_time)
                 self.__set_phase_delay(2, delay)
                 delay += cycle_time
