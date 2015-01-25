@@ -36,7 +36,11 @@ if __name__ == "__main__":
     if(args.blue):
         color = color | delcom904x.blue
     
-    light = delcom904x.DelcomMultiColorIndicator()
+    try:
+       light = delcom904x.DelcomMultiColorIndicator()
+    except:
+       print "Exiting."
+       exit()
     
     if(args.reset):
         light.reset()

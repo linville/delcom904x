@@ -46,6 +46,7 @@ class DelcomMultiColorIndicator:
             self.reset()
         except IOError, ex:
             print "Failed:", ex
+            raise
     
     def info(self):
         '''Prints out all the USB, firmware and current configuration
