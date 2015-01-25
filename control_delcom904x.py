@@ -15,8 +15,8 @@ if __name__ == "__main__":
     parser.add_argument('--green', action='store_true', help = "Enable the green light.")
     parser.add_argument('--blue', action='store_true', help = "Enable the blue light.")
     parser.add_argument('--flash', action='store_true', help = "Turns on flashing.")
-    parser.add_argument('--cycle', action='store_true', help = "Turns on cycling.")
-    parser.add_argument('--intensity', nargs = '?', metavar = '80', type=int, help = "Sets brightness: 0-100.")
+    parser.add_argument('--cycle', nargs = '?', metavar = '100', const = 100, type=int, help = "Turns on cycling.")
+    parser.add_argument('--intensity', nargs = '?', metavar = '80', const = 80, type=int, help = "Sets brightness: 0-100.")
     parser.add_argument('--buzzer', action='store_true', help = "Buzzes three times.")
     parser.add_argument('--reset', action='store_true', help = "Resets the device.")
     
@@ -41,12 +41,8 @@ if __name__ == "__main__":
     if(args.reset):
         light.reset()
         exit()
-        
-    cycle_time = 0
-    if(args.cycle):
-        cycle_time = 100
     
-    light.set_color(color, flashing = args.flash, cycle_time = cycle_time)
+    light.set_color(color, flashing = args.flash, cycle_time = args.cycle)
         
     if(args.intensity):
         light.set_intensity(args.intensity, color)
