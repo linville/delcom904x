@@ -35,3 +35,14 @@ import delcom904x
 light = delcom904x.DelcomMultiColorIndicator()
 light.set_color(delcom904x.red, flashing = true)
 ```
+
+udev Notes
+================
+
+On Linux machines, the default udev rulesets may set the permissions on the device to only
+be accessible to the root user. Add the following rule to `/etc/udev/rules.d/` and
+re-plugin the indicator to allow all users to access the device (optionally, consider
+changing `MODE="0666"` to `GROUP="dialout"` to allow only the dialout group access).
+
+        SUBSYSTEMS=="usb", ATTRS{idVendor}=="0fc5", ATTRS{idProduct}=="b080", MODE="0666"
+
