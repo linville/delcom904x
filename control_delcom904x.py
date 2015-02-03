@@ -8,7 +8,7 @@ import argparse
 import delcom904x
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = "Convert and generate Chmaber Director log files.")
+    parser = argparse.ArgumentParser(description = "Control the Delcom USBLMP 904x visual signal indicator.")
     parser.add_argument('--list', action='store_true', help = "List all USB devices.")
     parser.add_argument('--info', action='store_true', help = "Returns info on the device.")
     parser.add_argument('--red', action='store_true', help = "Enable the red light.")

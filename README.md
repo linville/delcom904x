@@ -5,7 +5,8 @@ visual signal indicators](http://www.delcomproducts.com/products_USBLMP.asp). Th
 USB HID devices that are easily programmable on most platforms.
 
 It has been tested with the [904005-SB](http://www.delcomproducts.com/productdetails.asp?productnum=904005-SB)
-but should work with any of the other models without any issues.
+but should work with any of the other models without any issues. Currently if you have a
+green, red and yellow indicator, substitute `--blue` for yellow (they're wired the same).
 
 Requirements
 ============
