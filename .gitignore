@@ -1,4 +1,7 @@
 build/
 dist/
+*.egg-info/
+.eggs
 MANIFEST
 *.pyc
+.venv

@@ -18,13 +18,7 @@ Requirements
 Installation
 ============
 
-1. Install the delcom904x module
-
-        $ [sudo] python setup.py install
-
-2. Plug in your Delcom USBLMP
-3. Test it out!
-
+        $ pip install delcom904x
         $ ./control_delcom904x.py --green --red --flash --cycle
 
 
