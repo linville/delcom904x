@@ -19,6 +19,8 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
         "Topic :: System :: Hardware :: Hardware Drivers",
+        "Topic :: Home Automation",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: ISC License (ISCL)",
     ],
     license="ISC",
