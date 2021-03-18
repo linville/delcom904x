@@ -2,12 +2,13 @@
 
 # This is an example of how to control the Delcom USBLMP 904x device
 #
-# Copyright (c) 2019 Aaron Linville <aaron@linville.org>
+# Copyright (c) 2021 Aaron Linville <aaron@linville.org>
 
 import argparse
 import delcom904x
 
-if __name__ == "__main__":
+
+def setup_argparse():
     parser = argparse.ArgumentParser(
         description="Control the Delcom USBLMP 904x visual signal indicator."
     )
@@ -44,7 +45,12 @@ if __name__ == "__main__":
     parser.add_argument("--buzzer", action="store_true", help="Buzzes three times.")
     parser.add_argument("--reset", action="store_true", help="Resets the device.")
 
-    args = parser.parse_args()
+    return parser
+
+
+# flake8: noqa: C901
+if __name__ == "__main__":
+    args = setup_argparse().parse_args()
 
     if args.list:
         delcom904x.list()
@@ -62,9 +68,8 @@ if __name__ == "__main__":
 
     try:
         light = delcom904x.DelcomMultiColorIndicator()
-    except:
-        print("Exiting.")
-        exit()
+    except OSError:
+        exit("Exiting, unable to connect to indicator.")
 
     if args.info:
         light.info()
@@ -77,7 +82,7 @@ if __name__ == "__main__":
         exit()
 
     # User didn't specify a color, so just exit
-    if color == 0:
+    if not color:
         exit()
 
     light.set_color(color, flashing=args.flash, cycle_time=args.cycle)

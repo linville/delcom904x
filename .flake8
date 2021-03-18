@@ -1,0 +1,12 @@
+# This will be moved to pyproject.toml when flake8 supports it.
+# See https://gitlab.com/pycqa/flake8/-/issues/428
+[flake8]
+max-line-length = 88
+max-complexity = 10
+extend-ignore = E203, E231, E501, F401, F403
+select = C,E,F,W,DJ
+exclude =
+    .eggs
+    .git
+    .venv
+    build
