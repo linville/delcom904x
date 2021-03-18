@@ -49,7 +49,7 @@ def setup_argparse():
 
 
 # flake8: noqa: C901
-if __name__ == "__main__":
+def main():
     args = setup_argparse().parse_args()
 
     if args.list:
@@ -89,3 +89,7 @@ if __name__ == "__main__":
 
     if args.intensity:
         light.set_intensity(args.intensity, color)
+
+
+if __name__ == "__main__":
+    main()

@@ -27,5 +27,5 @@ setup(
     install_requires=["hidapi"],
     python_requires=">=3.5",
     setup_requires=["wheel"],
-    scripts=['control_delcom904x.py'],
+    entry_points={"console_scripts": ["control_delcom904x=control_delcom904x:main"]},
 )

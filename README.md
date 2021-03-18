@@ -15,7 +15,7 @@ Installation
 ------------
 
         $ pip install delcom904x
-        $ control_delcom904x.py --green --red --flash --cycle
+        $ control_delcom904x --green --red --flash --cycle
 
 
 `control_delcom904x.py` usage
