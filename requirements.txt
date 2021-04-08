@@ -1,1 +1,1 @@
-hidapi
+hidapi~=0.10.0

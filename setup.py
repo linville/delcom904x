@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 from setuptools import setup
 
@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="delcom904x",
-    version="0.2.1",
+    version="0.3.0",
     description="A python class to control Delcom USBLMP Products 904x multi-color, USB, visual signal indicators",
     long_description=long_description,
     long_description_content_type="text/markdown",

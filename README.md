@@ -18,7 +18,7 @@ Installation
         $ control_delcom904x --green --red --flash --cycle
 
 
-`control_delcom904x.py` usage
+`control_delcom904x` usage
 -----------------------------
 
         -h, --help        show this help message and exit
