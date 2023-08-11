@@ -25,7 +25,8 @@ def list():
 
 
 class DelcomMultiColorIndicator:
-    """A python class for the Delcom USBLMP 904x Multi-color Visual Signal Indicators."""
+    """A python class for the Delcom USBLMP 904x Multi-color
+    Visual Signal Indicators."""
 
     # Command Packet Format:
     # Byte 0     - Major Command

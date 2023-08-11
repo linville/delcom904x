@@ -18,7 +18,7 @@ Installation
         $ control_delcom904x --green --red --flash --cycle
 
 
-`control_delcom904x` usage
+`control-delcom904x` usage
 -----------------------------
 
         -h, --help        show this help message and exit
@@ -41,19 +41,8 @@ Python Code Example
 ```python
 import delcom904x
 light = delcom904x.DelcomMultiColorIndicator()
-light.set_color(delcom904x.red, flashing=true)
+light.set_color(delcom904x.red, flashing=True)
 ```
-
-
-Dependencies
-------------
-
-If you are using the `pip install delcom904x` method, these will be handled for you.
-
-* [cython-hidapi](https://github.com/trezor/cython-hidapi) - Cython interface to HIDAPI
-library.
-* [hidapi](https://github.com/libusb/hidapi) - Cross platform library for communicating
-with USB and Bluetooth HID devices.
 
 
 udev Notes

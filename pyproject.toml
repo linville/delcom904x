@@ -1,4 +1,48 @@
+[project]
+name = "delcom904x"
+version = "0.4.0"
+description = "A python module to control Delcom USBLMP Products 904x multi-color, USB, visual signal indicators"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {file = "LICENSE"}
+authors = [
+  {name = "Aaron Linville", email = "aaron@linville.org"},
+]
+
+keywords = ["hidapi", "usb-hid", "iot-device"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Topic :: System :: Hardware :: Hardware Drivers",
+  "Topic :: Home Automation",
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: ISC License (ISCL)",
+]
+
+dependencies = [
+  "hidapi==0.14.*",
+]
+
+[project.optional-dependencies]
+dev = [
+  "black==23.7.*",
+  "build==0.10.*",
+  "ruff",
+  "twine==4.0.*",
+]
+
+[project.urls]
+Homepage = "https://github.com/linville/delcom904x/"
+
+[build-system]
+requires = ["setuptools>=65.0"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+control-delcom904x = "delcom904x.cli:main"
+
 [tool.black]
+line-length = 88
 exclude = '''
 /(
     \.eggs
