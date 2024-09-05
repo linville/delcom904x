@@ -1,6 +1,6 @@
 [project]
 name = "delcom904x"
-version = "0.4.0"
+version = "0.5.0"
 description = "A python module to control Delcom USBLMP Products 904x multi-color, USB, visual signal indicators"
 readme = "README.md"
 requires-python = ">=3.9"
