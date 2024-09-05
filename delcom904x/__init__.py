@@ -14,6 +14,7 @@ product_id = 0xB080
 green = 1
 red = 2
 blue = 4
+yellow = 4
 
 
 def list():
