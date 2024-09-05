@@ -48,6 +48,16 @@ class DelcomMultiColorIndicator:
             print(f"Failed: {e}")
             raise
 
+    def close(self):
+        """Close the USB connection gracefully"""
+        self.h.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        self.close()
+
     def info(self):
         """Prints out all the USB, firmware and current configuration
         on the attached multi-color indicator."""
