@@ -28,7 +28,7 @@ dev = [
   "black==23.7.*",
   "build==0.10.*",
   "ruff",
-  "twine==4.0.*",
+  "twine==5.1.*",
 ]
 
 [project.urls]
