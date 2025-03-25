@@ -14,6 +14,7 @@ product_id = 0xB080
 green = 1
 red = 2
 blue = 4
+yellow = 4
 
 
 def list():
@@ -47,6 +48,16 @@ class DelcomMultiColorIndicator:
         except OSError as e:
             print(f"Failed: {e}")
             raise
+
+    def close(self):
+        """Close the USB connection gracefully"""
+        self.h.close()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, exc_traceback):
+        self.close()
 
     def info(self):
         """Prints out all the USB, firmware and current configuration

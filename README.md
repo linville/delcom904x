@@ -35,13 +35,26 @@ Installation
         --reset           Resets the device.
 
 
-Python Code Example
+Python Code Examples
 -------------------
+
 
 ```python
 import delcom904x
+
 light = delcom904x.DelcomMultiColorIndicator()
 light.set_color(delcom904x.red, flashing=True)
+light.close()
+```
+
+```python
+import delcom904x
+
+with delcom904x.DelcomMultiColorIndicator() as light:
+    light.info()
+    color = delcom904x.green
+    light.set_color(color, flashing=True)
+    light.set_intensity(80, color)
 ```
 
 
