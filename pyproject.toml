@@ -4,7 +4,7 @@ version = "0.4.0"
 description = "A python module to control Delcom USBLMP Products 904x multi-color, USB, visual signal indicators"
 readme = "README.md"
 requires-python = ">=3.9"
-license = {file = "LICENSE"}
+license = "ISC"
 authors = [
   {name = "Aaron Linville", email = "aaron@linville.org"},
 ]
@@ -16,7 +16,6 @@ classifiers = [
   "Topic :: System :: Hardware :: Hardware Drivers",
   "Topic :: Home Automation",
   "Development Status :: 5 - Production/Stable",
-  "License :: OSI Approved :: ISC License (ISCL)",
 ]
 
 dependencies = [
@@ -25,18 +24,16 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-  "black==23.7.*",
-  "build==0.10.*",
-  "ruff",
-  "twine==4.0.*",
+  "black==25.1.*",
+  "build==1.2.*",
+  "ruff==0.11.*",
+  "twine==6.1.*",
 ]
 
 [project.urls]
 Homepage = "https://github.com/linville/delcom904x/"
-
-[build-system]
-requires = ["setuptools>=65.0"]
-build-backend = "setuptools.build_meta"
+Changelog = "https://github.com/linville/delcom904x/blob/main/CHANGELOG.md"
+Issues = "https://github.com/linville/delcom904x/issues"
 
 [project.scripts]
 control-delcom904x = "delcom904x.cli:main"
@@ -52,3 +49,9 @@ exclude = '''
   | dist
 )/
 '''
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+ignore = ["E501"]
