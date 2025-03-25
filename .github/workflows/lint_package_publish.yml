@@ -3,7 +3,7 @@ name: Lint, Package, Publish
 on: [push, pull_request]
 
 jobs:
-  lint-and-test:
+  build:
     name: Lint and Package
     runs-on: ubuntu-latest
 
