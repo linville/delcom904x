@@ -2,9 +2,10 @@
 
 # This is an example of how to control the Delcom USBLMP 904x device
 #
-# Copyright (c) 2021 Aaron Linville <aaron@linville.org>
+# Copyright (c) 2025 Aaron Linville <aaron@linville.org>
 
 import argparse
+
 import delcom904x
 
 
@@ -48,7 +49,6 @@ def setup_argparse():
     return parser
 
 
-# flake8: noqa: C901
 def main():
     args = setup_argparse().parse_args()
 
