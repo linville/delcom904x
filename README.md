@@ -1,10 +1,10 @@
 delcom904x
 ==========
 delcom904x is a python class and command-line script to control the [Delcom Products 904x
-series multi-color visual signal indicators](http://www.delcomproducts.com/products_USBLMP.asp).
+series multi-color visual signal indicators](https://www.delcomproducts.com/products_USBLMP.asp).
 These are USB HID devices that are easily controllable from most platforms.
 
-It has been tested with the [904005-SB](http://www.delcomproducts.com/productdetails.asp?productnum=904005-SB)
+It has been tested with the [904005-SB](https://www.delcomproducts.com/productdetails.asp?productnum=904005-SB)
 but should work with any of the other models without any issues. The yellow in the green,
 red and *yellow* indicators is wired the same as blue. There also doesn't appear to be a
 method of detecting if the attached indicator supports blue or yellow, so blue and yellow
