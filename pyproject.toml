@@ -18,10 +18,6 @@ classifiers = [
   "Development Status :: 5 - Production/Stable",
 ]
 
-[build-system]
-requires = ["setuptools >= 78.0"]
-build-backend = "setuptools.build_meta"
-
 dependencies = [
   "hidapi==0.14.*",
 ]
@@ -41,6 +37,10 @@ Issues = "https://github.com/linville/delcom904x/issues"
 
 [project.scripts]
 control-delcom904x = "delcom904x.cli:main"
+
+[build-system]
+requires = ["setuptools >= 78.0"]
+build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 88
