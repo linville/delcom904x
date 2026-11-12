@@ -3,7 +3,7 @@ name = "delcom904x"
 version = "0.5.0"
 description = "A python module to control Delcom USBLMP Products 904x multi-color, USB, visual signal indicators"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 license = "ISC"
 authors = [
   {name = "Aaron Linville", email = "aaron@linville.org"},
@@ -19,15 +19,15 @@ classifiers = [
 ]
 
 dependencies = [
-  "hidapi==0.14.*",
+  "hidapi==0.15.*",
 ]
 
 [project.optional-dependencies]
 dev = [
-  "black==25.1.*",
-  "build==1.2.*",
-  "ruff==0.11.*",
-  "twine==6.1.*",
+  "black==26.10.*",
+  "build==1.6.*",
+  "ruff==0.17.*",
+  "twine==7.0.*",
 ]
 
 [project.urls]
@@ -39,14 +39,14 @@ Issues = "https://github.com/linville/delcom904x/issues"
 control-delcom904x = "delcom904x.cli:main"
 
 [build-system]
-requires = ["setuptools >= 78.0"]
+requires = ["setuptools >= 80.9"]
 build-backend = "setuptools.build_meta"
 
 [tool.black]
 line-length = 88
 
 [tool.ruff]
-target-version = "py312"
+target-version = "py314"
 
 [tool.ruff.lint]
 ignore = ["E501"]
