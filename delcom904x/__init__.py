@@ -68,7 +68,7 @@ class DelcomMultiColorIndicator:
         print(f"USB Serial Id: {self.h.get_serial_number_string()}")
 
         data = self.h.get_feature_report(10, 8)
-        print("Serial: %s" % (data[3] << 32 | data[2] << 16 | data[1] << 8 | data[0]))
+        print("Serial: %s" % int.from_bytes(bytes(data[0:4]), "little"))
         print(f"Firmware version: {data[5]}")
         print(f"Firmware date: {data[7] + 2000}, {data[6]}, {data[5]}")
 

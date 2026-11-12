@@ -2,6 +2,9 @@
 ### Changed
 - `delcom904x.list()` was changed to `delcom904x.list_devices()`
 
+### Fixed
+- The MSB of the serial number was incorrectly parsed.
+
 ## [0.5.0]
 
 ## [0.4.0]
