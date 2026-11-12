@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Changed
 - `delcom904x.list()` was changed to `delcom904x.list_devices()`
+- Cleanly exit after listing devices.
 
 ### Fixed
 - The MSB of the serial number was incorrectly parsed.

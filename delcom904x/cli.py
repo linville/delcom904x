@@ -5,6 +5,7 @@
 # Copyright (c) 2025 Aaron Linville <aaron@linville.org>
 
 import argparse
+import sys
 
 import delcom904x
 
@@ -54,6 +55,7 @@ def main():
 
     if args.list:
         delcom904x.list_devices()
+        sys.exit()
 
     color = 0
 
@@ -69,7 +71,7 @@ def main():
     try:
         light = delcom904x.DelcomMultiColorIndicator()
     except OSError:
-        exit("Exiting, unable to connect to indicator.")
+        sys.exit("Exiting, unable to connect to indicator.")
 
     if args.info:
         light.info()
@@ -79,11 +81,11 @@ def main():
 
     if args.reset:
         light.reset()
-        exit()
+        sys.exit()
 
     # User didn't specify a color, so just exit
     if not color:
-        exit()
+        sys.exit("Exiting, color must be specified.")
 
     light.set_color(color, flashing=args.flash, cycle_time=args.cycle)
 
