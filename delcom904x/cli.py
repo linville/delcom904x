@@ -87,7 +87,7 @@ def main():
 
     light.set_color(color, flashing=args.flash, cycle_time=args.cycle)
 
-    if args.intensity:
+    if args.intensity is not None:
         light.set_intensity(args.intensity, color)
 
 

@@ -5,6 +5,7 @@
 ### Fixed
 - The MSB of the serial number was incorrectly parsed.
 - The firmware version was incorrectly parsed.
+- `--intensity 0` was ignored and would not adjust the intensity.
 
 ## [0.5.0]
 
