@@ -53,7 +53,7 @@ def main():
     args = setup_argparse().parse_args()
 
     if args.list:
-        delcom904x.list()
+        delcom904x.list_devices()
 
     color = 0
 

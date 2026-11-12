@@ -17,7 +17,7 @@ blue = 4
 yellow = 4
 
 
-def list():
+def list_devices():
     """Lists all the Delcom USBLMP 904x devices"""
     for d in hid.enumerate(vendor_id, product_id):
         for key in sorted(d.keys()):
@@ -76,17 +76,17 @@ class DelcomMultiColorIndicator:
         print("Port 0:", data[0])
         print("Port 1:", data[1])
 
-        str = []
+        color_str = []
         if ~data[1] & green:
-            str.append("Green")
+            color_str.append("Green")
         if ~data[1] & red:
-            str.append("Red")
+            color_str.append("Red")
         if ~data[1] & blue:
-            str.append("Blue/Yellow")
+            color_str.append("Blue/Yellow")
         if data[1] == 255:
-            str.append("None")
+            color_str.append("None")
 
-        print(f"  Enabled colors: {','.join(str)}")
+        print(f"  Enabled colors: {','.join(color_str)}")
 
         print("Port 1 Clock Enable Status:", data[2])
         print("Port 2:", data[3])

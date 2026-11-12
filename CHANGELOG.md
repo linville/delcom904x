@@ -1,0 +1,20 @@
+## [Unreleased]
+### Changed
+- `delcom904x.list()` was changed to `delcom904x.list_devices()`
+
+## [0.5.0]
+
+## [0.4.0]
+
+## [0.3.0]
+
+## [0.2.1]
+
+## [0.1.0]
+
+[Unreleased]: https://github.com/linville/delcom904x/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/linville/delcom904x/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/linville/delcom904x/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/linville/delcom904x/compare/v0.2.1...v0.3.0
+[0.2.1]: https://github.com/linville/delcom904x/compare/v0.1.0...v0.2.1
+[0.1.0]: https://github.com/linville/delcom904x/releases/tag/v0.1.0
