@@ -69,7 +69,7 @@ class DelcomMultiColorIndicator:
 
         data = self.h.get_feature_report(10, 8)
         print("Serial: %s" % int.from_bytes(bytes(data[0:4]), "little"))
-        print(f"Firmware version: {data[5]}")
+        print(f"Firmware version: {data[4]}")
         print(f"Firmware date: {data[7] + 2000}, {data[6]}, {data[5]}")
 
         data = self.h.get_feature_report(100, 4)

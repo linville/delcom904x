@@ -4,6 +4,7 @@
 
 ### Fixed
 - The MSB of the serial number was incorrectly parsed.
+- The firmware version was incorrectly parsed.
 
 ## [0.5.0]
 
