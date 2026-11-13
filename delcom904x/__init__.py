@@ -41,12 +41,13 @@ class DelcomMultiColorIndicator:
         """Constructs and attempts to attach to any available Delcom 904x Multi-Color
         Visual Indicator."""
 
+        self.h = hid.device()
+        self.h.open(vendor_id, product_id)
+
         try:
-            self.h = hid.device()
-            self.h.open(vendor_id, product_id)  # Vendor Id, Product Id
             self.reset()
-        except OSError as e:
-            print(f"Failed: {e}")
+        except Exception:
+            self._device.close()
             raise
 
     def close(self):
