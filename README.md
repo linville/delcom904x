@@ -43,7 +43,7 @@ Python Code Examples
 import delcom904x
 
 light = delcom904x.DelcomMultiColorIndicator()
-light.set_color(delcom904x.red, flashing=True)
+light.set_color(delcom904x.Color.RED, flashing=True)
 light.close()
 ```
 
@@ -52,7 +52,7 @@ import delcom904x
 
 with delcom904x.DelcomMultiColorIndicator() as light:
     light.info()
-    color = delcom904x.green
+    color = delcom904x.Color.GREEN | delcom904x.Color.RED
     light.set_color(color, flashing=True)
     light.set_intensity(80, color)
 ```

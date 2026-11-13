@@ -7,6 +7,7 @@
 # Copyright (c) 2026 Aaron Linville <aaron@linville.org>
 
 import datetime
+import enum
 from importlib.metadata import PackageNotFoundError, version
 
 import hid
@@ -19,10 +20,14 @@ except PackageNotFoundError:
 VENDOR_ID = 0x0FC5
 PRODUCT_ID = 0xB080
 
-green = 1
-red = 2
-blue = 4
-yellow = 4
+
+class Color(enum.IntFlag):
+    """LED colors, combinable with ``|``. Yellow is wired the same as blue."""
+
+    GREEN = 1
+    RED = 2
+    BLUE = 4
+    YELLOW = 4  # Alias of BLUE
 
 
 def list_devices():
@@ -88,7 +93,11 @@ class DelcomMultiColorIndicator:
         # Color bits are active-low: a cleared bit means the color is enabled.
         enabled_colors = [
             name
-            for name, mask in (("green", green), ("red", red), ("blue_yellow", blue))
+            for name, mask in (
+                ("green", Color.GREEN),
+                ("red", Color.RED),
+                ("blue_yellow", Color.BLUE),
+            )
             if not ports[1] & mask
         ]
 
@@ -113,6 +122,8 @@ class DelcomMultiColorIndicator:
     def set_color(self, colors, flashing=False, cycle_time=0):
         """Enables the colors with optional flashing or color cycling."""
 
+        # Use a plain int so ~colors inverts all 8 bits, not just the Color flags.
+        colors = int(colors)
         self._device.write([101, 12, colors, 0xFF])
 
         # If flash is not enabled, ensure it's disabled.
@@ -126,23 +137,11 @@ class DelcomMultiColorIndicator:
             delay = 0
             off_time = (colors.bit_count() - 1) * cycle_time
 
-            if colors & green:
-                # print(f"Cycle green: {cycle_time}, {delay}, {off_time}")
-                self._set_duty_cycle(0, cycle_time, off_time)
-                self._set_phase_delay(0, delay)
-                delay += cycle_time
-
-            if colors & red:
-                # print(f"Cycle red: {cycle_time}, {delay}, {off_time}")
-                self._set_duty_cycle(1, cycle_time, off_time)
-                self._set_phase_delay(1, delay)
-                delay += cycle_time
-
-            if colors & blue:
-                # print(f"Cycle blue: {cycle_time}, {delay}, {off_time}")
-                self._set_duty_cycle(2, cycle_time, off_time)
-                self._set_phase_delay(2, delay)
-                delay += cycle_time
+            for pin, color in enumerate((Color.GREEN, Color.RED, Color.BLUE)):
+                if colors & color:
+                    self._set_duty_cycle(pin, cycle_time, off_time)
+                    self._set_phase_delay(pin, delay)
+                    delay += cycle_time
 
             # No initial phase delay
             self._device.write([101, 25, colors, 0])  # Selected on pins

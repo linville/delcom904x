@@ -83,16 +83,16 @@ def main():
         delcom904x.list_devices()
         sys.exit()
 
-    color = 0
+    color = delcom904x.Color(0)
 
     if args.green:
-        color = color | delcom904x.green
+        color |= delcom904x.Color.GREEN
 
     if args.red:
-        color = color | delcom904x.red
+        color |= delcom904x.Color.RED
 
     if args.blue or args.yellow:
-        color = color | delcom904x.blue
+        color |= delcom904x.Color.BLUE
 
     with delcom904x.DelcomMultiColorIndicator() as light:
         if args.info:
