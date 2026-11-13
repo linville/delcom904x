@@ -157,7 +157,7 @@ class DelcomMultiColorIndicator:
             [
                 101,
                 26 + color_pin,  # Pin to delay turning on
-                delay_time,  # High duty cycle
+                delay_time,
                 0x0,
             ]
         )
