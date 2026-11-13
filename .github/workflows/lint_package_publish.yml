@@ -57,7 +57,7 @@ jobs:
       with:
         name: Package Artifacts
 
-    - name: 
+    - name: Smoke check.
       run: |
         pip install *.whl
         control-delcom904x --help
