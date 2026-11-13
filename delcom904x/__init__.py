@@ -8,8 +8,8 @@
 
 import hid
 
-vendor_id = 0x0FC5
-product_id = 0xB080
+VENDOR_ID = 0x0FC5
+PRODUCT_ID = 0xB080
 
 green = 1
 red = 2
@@ -19,7 +19,7 @@ yellow = 4
 
 def list_devices():
     """Lists all the Delcom USBLMP 904x devices"""
-    for d in hid.enumerate(vendor_id, product_id):
+    for d in hid.enumerate(VENDOR_ID, PRODUCT_ID):
         for key in sorted(d.keys()):
             print(f"{key} : {d[key]}")
         print()
@@ -42,7 +42,7 @@ class DelcomMultiColorIndicator:
         Visual Indicator."""
 
         self.h = hid.device()
-        self.h.open(vendor_id, product_id)
+        self.h.open(VENDOR_ID, PRODUCT_ID)
 
         try:
             self.reset()
