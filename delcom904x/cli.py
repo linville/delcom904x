@@ -17,7 +17,9 @@ def _int_range(min_val, max_val):
         try:
             val = int(value)
         except ValueError as err:
-            raise argparse.ArgumentTypeError(f"'{value}' is not a valid integer") from err
+            raise argparse.ArgumentTypeError(
+                f"'{value}' is not a valid integer"
+            ) from err
 
         if val < min_val or val > max_val:
             raise argparse.ArgumentTypeError(
