@@ -7,8 +7,14 @@
 # Copyright (c) 2019 Aaron Linville <aaron@linville.org>
 
 import datetime
+from importlib.metadata import PackageNotFoundError, version
 
 import hid
+
+try:
+    __version__ = version("delcom904x")
+except PackageNotFoundError:
+    __version__ = "0+unknown"
 
 VENDOR_ID = 0x0FC5
 PRODUCT_ID = 0xB080

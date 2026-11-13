@@ -1,4 +1,8 @@
 ## [Unreleased]
+### Added
+- `delcom904x.__version__` exposes the installed package version.
+- `--version` option for `control-delcom904x`.
+
 ### Changed
 - `delcom904x.list()` was changed to `delcom904x.list_devices()`.
 - `delcom904x.info()` returns a dict rather than just printing to the console.

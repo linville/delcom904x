@@ -35,6 +35,11 @@ def setup_argparse():
     parser = argparse.ArgumentParser(
         description="Control the Delcom USBLMP 904x visual signal indicator."
     )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"%(prog)s {delcom904x.__version__}",
+    )
     parser.add_argument("--list", action="store_true", help="List all USB devices.")
     parser.add_argument(
         "--info", action="store_true", help="Returns info on the device."
