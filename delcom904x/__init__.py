@@ -116,20 +116,20 @@ class DelcomMultiColorIndicator:
 
             if colors & green:
                 # print(f"Cycle green: {cycle_time}, {delay}, {off_time}")
-                self.__set_duty_cycle(0, cycle_time, off_time)
-                self.__set_phase_delay(0, delay)
+                self._set_duty_cycle(0, cycle_time, off_time)
+                self._set_phase_delay(0, delay)
                 delay += cycle_time
 
             if colors & red:
                 # print(f"Cycle red: {cycle_time}, {delay}, {off_time}")
-                self.__set_duty_cycle(1, cycle_time, off_time)
-                self.__set_phase_delay(1, delay)
+                self._set_duty_cycle(1, cycle_time, off_time)
+                self._set_phase_delay(1, delay)
                 delay += cycle_time
 
             if colors & blue:
                 # print(f"Cycle blue: {cycle_time}, {delay}, {off_time}")
-                self.__set_duty_cycle(2, cycle_time, off_time)
-                self.__set_phase_delay(2, delay)
+                self._set_duty_cycle(2, cycle_time, off_time)
+                self._set_phase_delay(2, delay)
                 delay += cycle_time
 
             self._device.write(
@@ -138,7 +138,7 @@ class DelcomMultiColorIndicator:
         else:
             self._device.write([101, 25, 0xF, 0])  # All pins  # No initial phase delay
 
-    def __set_duty_cycle(self, color_pin, on_time, off_time):
+    def _set_duty_cycle(self, color_pin, on_time, off_time):
         """Internal method to set the duty cycle on a pin, used for color cycling."""
 
         self._device.write(
@@ -150,7 +150,7 @@ class DelcomMultiColorIndicator:
             ]
         )  # Low duty cycle
 
-    def __set_phase_delay(self, color_pin, delay_time):
+    def _set_phase_delay(self, color_pin, delay_time):
         """Internal method to set the initial delay on a pin, used for color cycling."""
 
         self._device.write(
@@ -165,7 +165,7 @@ class DelcomMultiColorIndicator:
     def set_intensity(self, intensity, colors):
         """Sets the intensity of a color using pulse-width modulation (0-100 %)."""
 
-        self.h.write([101, 34, colors, intensity])
+        self._device.write([101, 34, colors, intensity])
 
     def disable_buzzer(self):
         """Disables the buzzer."""
