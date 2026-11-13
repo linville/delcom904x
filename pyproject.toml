@@ -53,10 +53,12 @@ target-version = "py311"
 ignore = ["E501"]
 select = [
   "A",   # built-ins
+  "B",   # flake8-bugbear
   "E",   # pycodestyle
   "F",   # pyflakes
-  "UP",  # pyupgrade
-  "B",   # flake8-bugbear
-  "SIM", # flake8-simplify
+  "FBT", # flake8-boolean-trap
   "I",   # isort
+  "PIE", # various unnecessary
+  "SIM", # flake8-simplify
+  "UP",  # pyupgrade
 ]
