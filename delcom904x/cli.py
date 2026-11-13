@@ -12,11 +12,12 @@ import delcom904x
 
 def _int_range(min_val, max_val):
     """Helper used to validate CLI argument ranges."""
+
     def validator(value):
         try:
             val = int(value)
-        except ValueError:
-            raise argparse.ArgumentTypeError(f"'{value}' is not a valid integer")
+        except ValueError as err:
+            raise argparse.ArgumentTypeError(f"'{value}' is not a valid integer") from err
 
         if val < min_val or val > max_val:
             raise argparse.ArgumentTypeError(
