@@ -1,8 +1,8 @@
 #!/usr/bin/env python
+"""An example of how to control the Delcom USBLMP 904x device.
 
-# This is an example of how to control the Delcom USBLMP 904x device
-#
-# Copyright (c) 2026 Aaron Linville <aaron@linville.org>
+Copyright (c) 2026 Aaron Linville <aaron@linville.org>
+"""
 
 import argparse
 import sys

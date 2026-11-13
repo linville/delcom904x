@@ -1,10 +1,12 @@
-# A python class for the Delcom USBLMP 904x multi-color visual signal indicator. This
-# has been tested with the 904005-SB but should work with most of the other
-# indicators.
-#
-# Requires the Signal 11 HIDAPI and cython-hidapi.
-#
-# Copyright (c) 2026 Aaron Linville <aaron@linville.org>
+"""A python class for the Delcom USBLMP 904x multi-color visual signal indicator.
+
+This has been tested with the 904005-SB but should work with most of the other
+indicators.
+
+Requires the Signal 11 HIDAPI and cython-hidapi.
+
+Copyright (c) 2026 Aaron Linville <aaron@linville.org>
+"""
 
 import datetime
 import enum
