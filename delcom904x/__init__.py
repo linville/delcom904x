@@ -34,7 +34,7 @@ class DelcomMultiColorIndicator:
     # Byte 1     - Minor Command
     # Byte 2     - Data LSB
     # Byte 3     - Data MSB
-    # Bytes 4-8  - Data HID
+    # Bytes 4-7  - Data HID
     # Bytes 8-16 - Data External (Optional)
 
     def __init__(self):
