@@ -4,7 +4,7 @@
 #
 # Requires the Signal 11 HIDAPI and cython-hidapi.
 #
-# Copyright (c) 2019 Aaron Linville <aaron@linville.org>
+# Copyright (c) 2026 Aaron Linville <aaron@linville.org>
 
 import datetime
 from importlib.metadata import PackageNotFoundError, version
