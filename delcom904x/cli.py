@@ -10,6 +10,24 @@ import sys
 import delcom904x
 
 
+def _int_range(min_val, max_val):
+    """Helper used to validate CLI argument ranges."""
+    def validator(value):
+        try:
+            val = int(value)
+        except ValueError:
+            raise argparse.ArgumentTypeError(f"'{value}' is not a valid integer")
+
+        if val < min_val or val > max_val:
+            raise argparse.ArgumentTypeError(
+                f"Value {val} is out of range. Must be between {min_val} and"
+                f" {max_val}."
+            )
+        return val
+
+    return validator
+
+
 def setup_argparse():
     parser = argparse.ArgumentParser(
         description="Control the Delcom USBLMP 904x visual signal indicator."
@@ -33,7 +51,7 @@ def setup_argparse():
         metavar="100",
         const=100,
         default=0,
-        type=int,
+        type=_int_range(0, 100),
         help="Turns on cycling.",
     )
     parser.add_argument(
@@ -41,7 +59,7 @@ def setup_argparse():
         nargs="?",
         metavar="80",
         const=80,
-        type=int,
+        type=_int_range(0, 100),
         help="Sets brightness: 0-100.",
     )
     parser.add_argument("--buzzer", action="store_true", help="Buzzes three times.")
