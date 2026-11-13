@@ -68,29 +68,25 @@ def main():
     if args.blue or args.yellow:
         color = color | delcom904x.blue
 
-    try:
-        light = delcom904x.DelcomMultiColorIndicator()
-    except OSError:
-        sys.exit("Exiting, unable to connect to indicator.")
+    with delcom904x.DelcomMultiColorIndicator() as light:
+        if args.info:
+            light.info()
 
-    if args.info:
-        light.info()
+        if args.reset:
+            light.reset()
+            sys.exit()
 
-    if args.buzzer:
-        light.enable_buzzer(0, 200, 100, 3)
+        if args.buzzer:
+            light.enable_buzzer(0, 200, 100, 3)
 
-    if args.reset:
-        light.reset()
-        sys.exit()
+        # User didn't specify a color, so just exit
+        if not color:
+            sys.exit("Exiting, color must be specified.")
 
-    # User didn't specify a color, so just exit
-    if not color:
-        sys.exit("Exiting, color must be specified.")
+        light.set_color(color, flashing=args.flash, cycle_time=args.cycle)
 
-    light.set_color(color, flashing=args.flash, cycle_time=args.cycle)
-
-    if args.intensity is not None:
-        light.set_intensity(args.intensity, color)
+        if args.intensity is not None:
+            light.set_intensity(args.intensity, color)
 
 
 if __name__ == "__main__":
