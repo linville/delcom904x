@@ -121,7 +121,7 @@ class DelcomMultiColorIndicator:
         self.set_color(0)
         self.disable_buzzer()
 
-    def set_color(self, colors, flashing=False, cycle_time=0):
+    def set_color(self, colors, *, flashing=False, cycle_time=0):
         """Enables the colors with optional flashing or color cycling."""
 
         # Use a plain int so ~colors inverts all 8 bits, not just the Color flags.
