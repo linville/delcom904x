@@ -132,11 +132,12 @@ class DelcomMultiColorIndicator:
                 self._set_phase_delay(2, delay)
                 delay += cycle_time
 
-            self._device.write(
-                [101, 25, colors, 0]  # Selected on pins
-            )  # No initial phase delay
+            # No initial phase delay
+            self._device.write([101, 25, colors, 0])  # Selected on pins
         else:
-            self._device.write([101, 25, 0xF, 0])  # All pins  # No initial phase delay
+            # All pins
+            # No initial phase delay
+            self._device.write([101, 25, 0xF, 0])
 
     def _set_duty_cycle(self, color_pin, on_time, off_time):
         """Internal method to set the duty cycle on a pin, used for color cycling."""
