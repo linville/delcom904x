@@ -112,7 +112,7 @@ class DelcomMultiColorIndicator:
         if cycle_time > 0:
             # Syncronize clock generation
             delay = 0
-            off_time = bin(colors).count("1") * cycle_time - cycle_time
+            off_time = (colors.bit_count() - 1) * cycle_time
 
             if colors & green:
                 # print(f"Cycle green: {cycle_time}, {delay}, {off_time}")
