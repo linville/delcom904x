@@ -41,8 +41,8 @@ class DelcomMultiColorIndicator:
         """Constructs and attempts to attach to any available Delcom 904x Multi-Color
         Visual Indicator."""
 
-        self.h = hid.device()
-        self.h.open(VENDOR_ID, PRODUCT_ID)
+        self._device = hid.device()
+        self._device.open(VENDOR_ID, PRODUCT_ID)
 
         try:
             self.reset()
@@ -52,7 +52,7 @@ class DelcomMultiColorIndicator:
 
     def close(self):
         """Close the USB connection gracefully"""
-        self.h.close()
+        self._device.close()
 
     def __enter__(self):
         return self
@@ -64,16 +64,16 @@ class DelcomMultiColorIndicator:
         """Prints out all the USB, firmware and current configuration
         on the attached multi-color indicator."""
 
-        print(f"USB Manufacturer Id: {self.h.get_manufacturer_string()}")
-        print(f"USB Product Id: {self.h.get_product_string()}")
-        print(f"USB Serial Id: {self.h.get_serial_number_string()}")
+        print(f"USB Manufacturer Id: {self._device.get_manufacturer_string()}")
+        print(f"USB Product Id: {self._device.get_product_string()}")
+        print(f"USB Serial Id: {self._device.get_serial_number_string()}")
 
-        data = self.h.get_feature_report(10, 8)
+        data = self._device.get_feature_report(10, 8)
         print("Serial: ", int.from_bytes(bytes(data[0:4]), "little"))
         print(f"Firmware version: {data[4]}")
         print(f"Firmware date: {data[7] + 2000}, {data[6]}, {data[5]}")
 
-        data = self.h.get_feature_report(100, 4)
+        data = self._device.get_feature_report(100, 4)
         print("Port 0:", data[0])
         print("Port 1:", data[1])
 
@@ -101,13 +101,13 @@ class DelcomMultiColorIndicator:
     def set_color(self, colors, flashing=False, cycle_time=0):
         """Enables the colors with optional flashing or color cycling."""
 
-        self.h.write([101, 12, colors, 0xFF])
+        self._device.write([101, 12, colors, 0xFF])
 
         # If flash is not enabled, ensure it's disabled.
         if flashing or cycle_time > 0:
-            self.h.write([101, 20, ~colors & 0xFF, colors])
+            self._device.write([101, 20, ~colors & 0xFF, colors])
         else:
-            self.h.write([101, 20, 0xF, 0x0])
+            self._device.write([101, 20, 0xF, 0x0])
 
         if cycle_time > 0:
             # Syncronize clock generation
@@ -132,16 +132,16 @@ class DelcomMultiColorIndicator:
                 self.__set_phase_delay(2, delay)
                 delay += cycle_time
 
-            self.h.write(
+            self._device.write(
                 [101, 25, colors, 0]  # Selected on pins
             )  # No initial phase delay
         else:
-            self.h.write([101, 25, 0xF, 0])  # All pins  # No initial phase delay
+            self._device.write([101, 25, 0xF, 0])  # All pins  # No initial phase delay
 
     def __set_duty_cycle(self, color_pin, on_time, off_time):
         """Internal method to set the duty cycle on a pin, used for color cycling."""
 
-        self.h.write(
+        self._device.write(
             [
                 101,
                 21 + color_pin,  # Pin to set duty cycle on
@@ -153,7 +153,7 @@ class DelcomMultiColorIndicator:
     def __set_phase_delay(self, color_pin, delay_time):
         """Internal method to set the initial delay on a pin, used for color cycling."""
 
-        self.h.write(
+        self._device.write(
             [
                 101,
                 26 + color_pin,  # Pin to delay turning on
@@ -170,7 +170,7 @@ class DelcomMultiColorIndicator:
     def disable_buzzer(self):
         """Disables the buzzer."""
 
-        self.h.write(
+        self._device.write(
             [
                 102,
                 70,
@@ -195,7 +195,7 @@ class DelcomMultiColorIndicator:
         """Enables the buzzer with a duty cycle and repetition. Frequency is currently
         hardcoded."""
 
-        self.h.write(
+        self._device.write(
             [
                 102,
                 70,
