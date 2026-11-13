@@ -206,8 +206,8 @@ class DelcomMultiColorIndicator:
                 0x0,
                 0x0,
                 repeat,
-                int(duty_on / 50),  # Duty cycle (on), 50 ms units
-                int(duty_off / 50),  # Duty cycle (off), 50 ms units
+                duty_on // 50,  # Duty cycle (on), 50 ms units
+                duty_off // 50,  # Duty cycle (off), 50 ms units
                 0x0,
                 0x0,
                 0x0,
