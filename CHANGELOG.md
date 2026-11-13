@@ -1,6 +1,7 @@
 ## [Unreleased]
 ### Changed
-- `delcom904x.list()` was changed to `delcom904x.list_devices()`
+- `delcom904x.list()` was changed to `delcom904x.list_devices()`.
+- `delcom904x.info()` returns a dict rather than just printing to the console.
 - Cleanly exit after listing devices.
 
 ### Fixed

@@ -91,7 +91,9 @@ def main():
 
     with delcom904x.DelcomMultiColorIndicator() as light:
         if args.info:
-            light.info()
+            import pprint
+
+            pprint.pprint(light.info(), sort_dicts=False)
 
         if args.reset:
             light.reset()

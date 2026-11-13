@@ -6,6 +6,8 @@
 #
 # Copyright (c) 2019 Aaron Linville <aaron@linville.org>
 
+import datetime
+
 import hid
 
 VENDOR_ID = 0x0FC5
@@ -61,36 +63,40 @@ class DelcomMultiColorIndicator:
         self.close()
 
     def info(self):
-        """Prints out all the USB, firmware and current configuration
-        on the attached multi-color indicator."""
+        """Return the USB, firmware and current configuration details
+        of the attached multi-color indicator as a dict."""
+        usb = {
+            "manufacturer": self._device.get_manufacturer_string(),
+            "product": self._device.get_product_string(),
+            "serial": self._device.get_serial_number_string(),
+        }
 
-        print(f"USB Manufacturer Id: {self._device.get_manufacturer_string()}")
-        print(f"USB Product Id: {self._device.get_product_string()}")
-        print(f"USB Serial Id: {self._device.get_serial_number_string()}")
+        fw = self._device.get_feature_report(10, 8)
+        firmware = {
+            "serial": int.from_bytes(bytes(fw[0:4]), "little"),
+            "version": fw[4],
+            "date": datetime.date(fw[7] + 2000, fw[6], fw[5]),
+        }
 
-        data = self._device.get_feature_report(10, 8)
-        print("Serial: ", int.from_bytes(bytes(data[0:4]), "little"))
-        print(f"Firmware version: {data[4]}")
-        print(f"Firmware date: {data[7] + 2000}, {data[6]}, {data[5]}")
+        ports = self._device.get_feature_report(100, 4)
+        # Color bits are active-low: a cleared bit means the color is enabled.
+        enabled_colors = [
+            name
+            for name, mask in (("green", green), ("red", red), ("blue_yellow", blue))
+            if not ports[1] & mask
+        ]
 
-        data = self._device.get_feature_report(100, 4)
-        print("Port 0:", data[0])
-        print("Port 1:", data[1])
-
-        color_str = []
-        if ~data[1] & green:
-            color_str.append("Green")
-        if ~data[1] & red:
-            color_str.append("Red")
-        if ~data[1] & blue:
-            color_str.append("Blue/Yellow")
-        if data[1] == 255:
-            color_str.append("None")
-
-        print(f"  Enabled colors: {','.join(color_str)}")
-
-        print("Port 1 Clock Enable Status:", data[2])
-        print("Port 2:", data[3])
+        return {
+            "usb": usb,
+            "firmware": firmware,
+            "ports": {
+                "port0": ports[0],
+                "port1": ports[1],
+                "port1_enabled_colors": enabled_colors,
+                "port1_clock_enable": ports[2],
+                "port2": ports[3],
+            },
+        }
 
     def reset(self):
         """Turns off all the LEDs and Buzzers."""
