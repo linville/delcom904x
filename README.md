@@ -31,8 +31,12 @@ Installation
         --flash           Turns on flashing.
         --cycle [100]     Turns on cycling.
         --intensity [80]  Sets brightness: 0-100.
-        --buzzer          Buzzes three times.
         --reset           Resets the device.
+
+      buzzer options:
+        --buzz [3]        Buzz N times: 1-255.
+        --buzz-freq 1000  Buzzer frequency in Hz: 16-3906.
+        --silence         Stop the buzzer, leaving the LEDs.
 
 
 Python Code Examples
@@ -55,6 +59,14 @@ with delcom904x.DelcomMultiColorIndicator() as light:
     color = delcom904x.Color.GREEN | delcom904x.Color.RED
     light.set_color(color, flashing=True)
     light.set_intensity(80, color)
+```
+
+```python
+import delcom904x
+
+# reset=False leaves the current LED and buzzer state alone when attaching.
+with delcom904x.DelcomMultiColorIndicator(reset=False) as light:
+    light.enable_buzzer(frequency=2000, on_ms=500, off_ms=250, repeat=5)
 ```
 
 

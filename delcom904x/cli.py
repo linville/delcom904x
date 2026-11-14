@@ -70,7 +70,30 @@ def setup_argparse():
         type=_int_range(0, 100),
         help="Sets brightness: 0-100.",
     )
-    parser.add_argument("--buzzer", action="store_true", help="Buzzes three times.")
+    buzzer = parser.add_argument_group("buzzer options")
+    buzzer.add_argument(
+        "--buzz",
+        nargs="?",
+        metavar="3",
+        const=3,
+        type=_int_range(1, 255),
+        help="Buzz N times: 1-255.",
+    )
+    buzzer.add_argument(
+        "--buzz-freq",
+        metavar="1000",
+        default=1000,
+        type=_int_range(
+            delcom904x.BUZZER_MIN_FREQUENCY, delcom904x.BUZZER_MAX_FREQUENCY
+        ),
+        help=(
+            f"Buzzer frequency in Hz: {delcom904x.BUZZER_MIN_FREQUENCY}-"
+            f"{delcom904x.BUZZER_MAX_FREQUENCY}."
+        ),
+    )
+    buzzer.add_argument(
+        "--silence", action="store_true", help="Stop the buzzer, leaving the LEDs."
+    )
     parser.add_argument("--reset", action="store_true", help="Resets the device.")
 
     return parser
@@ -94,7 +117,11 @@ def main():
     if args.blue or args.yellow:
         color |= delcom904x.Color.BLUE
 
-    with delcom904x.DelcomMultiColorIndicator() as light:
+    if not (args.info or args.reset or args.buzz or args.silence or color):
+        sys.exit("Exiting, a color or buzzer option must be specified.")
+
+    # Don't reset on attach, so a buzzer started by an earlier run keeps going.
+    with delcom904x.DelcomMultiColorIndicator(reset=False) as light:
         if args.info:
             import pprint
 
@@ -104,17 +131,17 @@ def main():
             light.reset()
             sys.exit()
 
-        if args.buzzer:
-            light.enable_buzzer(0, 200, 100, 3)
+        if args.silence:
+            light.disable_buzzer()
 
-        # User didn't specify a color, so just exit
-        if not color:
-            sys.exit("Exiting, color must be specified.")
+        if args.buzz:
+            light.enable_buzzer(frequency=args.buzz_freq, repeat=args.buzz)
 
-        light.set_color(color, flashing=args.flash, cycle_time=args.cycle)
+        if color:
+            light.set_color(color, flashing=args.flash, cycle_time=args.cycle)
 
-        if args.intensity is not None:
-            light.set_intensity(args.intensity, color)
+            if args.intensity is not None:
+                light.set_intensity(args.intensity, color)
 
 
 if __name__ == "__main__":

@@ -2,12 +2,17 @@
 ### Added
 - `delcom904x.__version__` exposes the installed package version.
 - `--version` option for `control-delcom904x`.
+- `--buzz [N]`, `--buzz-freq HZ` and `--silence` options for `control-delcom904x`.
+- `DelcomMultiColorIndicator(reset=False)` attaches without turning off the LEDs and buzzer.
 
 ### Changed
 - Colors are now the `delcom904x.Color` IntFlag (e.g. `Color.RED`), replacing the `green`, `red`, `blue` and `yellow` module constants.
 - `delcom904x.list()` was changed to `delcom904x.list_devices()`.
 - `delcom904x.info()` returns a dict rather than just printing to the console.
 - Cleanly exit after listing devices.
+- `enable_buzzer()` now takes keyword-only `frequency` (Hz), `on_ms`, `off_ms` and `repeat` arguments, validates their ranges and actually applies the frequency.
+- `--buzzer` was replaced by `--buzz [N]`; buzzer options no longer require a color to be specified.
+- `control-delcom904x` no longer resets the device on startup, so a running buzzer isn't silenced (use `--reset` explicitly).
 
 ### Fixed
 - The MSB of the serial number was incorrectly parsed.
