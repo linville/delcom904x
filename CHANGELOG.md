@@ -1,4 +1,4 @@
-## [Unreleased]
+## [1.0.0] - 2026-11-13
 ### Added
 - `delcom904x.__version__` exposes the installed package version.
 - `--version` option for `control-delcom904x`.
@@ -36,7 +36,8 @@
 ## [0.1.0] - 2014-12-15
 - Initial release.
 
-[Unreleased]: https://github.com/linville/delcom904x/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/linville/delcom904x/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/linville/delcom904x/compare/v0.5.0...v1.0.0
 [0.5.0]: https://github.com/linville/delcom904x/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/linville/delcom904x/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/linville/delcom904x/compare/v0.2.1...v0.3.0
